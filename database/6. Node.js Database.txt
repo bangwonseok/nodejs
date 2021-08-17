@@ -1,0 +1,100 @@
+0. DBMS 설치(MySQL)
+   - mysql
+   
+   mysql.com 
+   
+root 비번
+aA!12345
+
+SQL
+AS -> Alias
+
+SELECT * FROM 테이블 AS 별칭
+SELECT * FROM 테이블1 별칭1, 테이블2 별칭2
+	WHERE 별칭1.값 = 별칭2.값
+	
+SELECT * FROM 테이블1 별칭1 INNER JOIN 테이블2 별칭2 ON 별칭1. 속성 = 별칭2. 속성
+
+환경변수
+	MYSQL 실행경로
+	C:\Program Files\MySQL\MySQL Server 8.0\bin
+	
+	MSQL 접속
+	mysql u 계정이름 -p
+	
+	
+	https://sequelize.org/
+1. Sequelize
+설치 패키치(모듈)
+sequelize
+sequelize-cli-명령어
+mysql2 -> sequelize와 DBMS(MySQL) 연동을 하는 드라이버
+
+npm i sequelize sequelize-cli mysql2
+
+필요한 폴더, 설정파일
+npx sequelize init
+config - 데이터베이스 연결 설정(config.json)
+models - 데이터베이스에서 데이터 추출 또는 그와 관련된 설정등의 로직
+			- index.js -> 설정을 완료
+
+DB 연결
+sequelize 인스턴스
+	.sync({force : false})
+		.then() --> // DB 연결 성공
+		.catch() --> DB 연결 실패
+		
+SQL 실행
+sequelize 인스턴스
+	.query(sql, {
+		replacements : SQL 실행시 변경, 추가, 삭제에 대한 변수 바인딩,
+		type : Querytypes(Sequelize).SELECT | INSERT | UPDATE | DELETE
+	})
+	
+	
+회원가입, 로그인, 로그아웃
+1. npm i init -> package.json
+	-> script -> 사용자 정의 명령어
+
+2. 필요한 모듈(패키지)
+	1) npm i express nunjucks morgan cookie-parser express-session dotenv
+	+ sequelize sequelize-cli mysql2
+	
+	2) npn i -D nodemon
+
+3. app.js
+
+4. .env //* 메인에 만들어줘야함 */
+
+5. 라우터
+	routes/index.js
+	/
+	
+	routes/member.js
+	/member/join
+		- 양식(form) - GET  // EX.) www.naver.com 검색 ( get 방식)
+		- 회원가입 처리 - POST
+		
+	/member/login
+		- 양식(form) - GET
+		- 로그인 처리 - POST
+	
+	/member/logout
+	- GET
+	
+6. 데이터베이스 설정
+	(sequelize, sequelize-cli, mysql2)
+	
+	1) npx sequelize init 
+	
+	2) conifg/config.json -> 데이터베이스 접속 계정
+	
+7. 데이터베이스 테이블 생성
+USE nodejs;
+CREATE TABLE
+
+
+8. 테이블 비우기
+TRUNCATE 테이블명;
+
+9. 암호화 해시 bcrypt
